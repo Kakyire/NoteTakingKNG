@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.FragmentNotesDetailBinding
+import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,8 +38,10 @@ class NotesDetailFragment : Fragment(R.layout.fragment_notes_detail) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menEdit -> NotesDetailFragmentDirections
-                .actionNotesDetailFragmentToAddNotesFragment(navArgs.notes)
+            R.id.menEdit -> navigateToNextPage(
+                NotesDetailFragmentDirections
+                    .actionNotesDetailFragmentToAddNotesFragment(navArgs.notes)
+            )
         }
         return super.onOptionsItemSelected(item)
     }

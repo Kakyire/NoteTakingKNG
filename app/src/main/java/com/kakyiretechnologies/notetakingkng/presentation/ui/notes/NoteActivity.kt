@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.kakyiretechnologies.notetakingkng.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
