@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Note Taking - KNG</string>
+    <string name="search_note_by_title_date">Search note by title/date</string>
+    <string name="created_on">Created on:</string>
+    <string name="modified">Modified:</string>
+    <string name="add_note">Add Note</string>
+    <string name="notes_you_add_appear_here">Notes you add appear here</string>
+    <string name="title">Title</string>
+    <string name="note_content">Note content</string>
+    <string name="edit_note">Edit Note</string>
+</resources>

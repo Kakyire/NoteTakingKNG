@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/addNotesFragment"
+        android:name="com.kakyiretechnologies.notetakingkng.presentation.ui.addnotes.AddNotesFragment"
+        android:label="Add Notes"
+        tools:layout="@layout/fragment_add_notes">
+        <argument
+            android:name="notes"
+            android:defaultValue="@null"
+            app:argType="com.kakyiretechnologies.notetakingkng.data.model.Notes"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.kakyiretechnologies.notetakingkng.presentation.ui.notes.NotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes">
+        <action
+            android:id="@+id/action_notesFragment_to_addNotesFragment"
+            app:destination="@id/addNotesFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_notesDetailFragment"
+            app:destination="@id/notesDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesDetailFragment"
+        android:name="com.kakyiretechnologies.notetakingkng.presentation.ui.notesdetail.NotesDetailFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes_detail" >
+        <action
+            android:id="@+id/action_notesDetailFragment_to_addNotesFragment"
+            app:destination="@id/addNotesFragment" />
+        <argument
+            android:name="notes"
+            app:argType="com.kakyiretechnologies.notetakingkng.data.model.Notes" />
+    </fragment>
+</navigation>
