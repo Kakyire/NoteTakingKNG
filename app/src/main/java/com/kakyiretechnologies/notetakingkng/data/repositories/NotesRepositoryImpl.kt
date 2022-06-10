@@ -28,6 +28,11 @@ class NotesRepositoryImpl @Inject constructor(
         noteDao.addNote(noteDTO)
     }
 
+    override suspend fun updateNote(note: Notes) {
+        val noteDTO = mapper.notesToNotesDTO(note)
+        noteDao.updateNote(noteDTO)
+    }
+
     override suspend fun deleteNote(note: Notes) {
         val noteDTO = mapper.notesToNotesDTO(note)
         noteDao.deleteNote(noteDTO)

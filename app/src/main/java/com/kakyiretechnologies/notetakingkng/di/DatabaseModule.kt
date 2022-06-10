@@ -32,4 +32,8 @@ class DatabaseModule {
             .build()
     }
 
+    @Singleton
+    @Provides
+    fun provideNoteDao(db: NoteDatabase) = db.noteDao()
+
 }

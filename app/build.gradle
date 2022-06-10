@@ -69,7 +69,17 @@ dependencies {
     //Room
     implementation "androidx.room:room-ktx:$roomVersion"
 
+    //Unit testing
     testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "androidx.room:room-testing:$roomVersion"
+    testImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+
+
+    //Instrumented testing
     androidTestImplementation "androidx.test.ext:junit:$jUnitExt"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressonVersion"
+    androidTestImplementation "com.google.truth:truth:$truthVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+
 }

@@ -2,13 +2,14 @@ package com.kakyiretechnologies.notetakingkng.data.mappers
 
 import com.kakyiretechnologies.notetakingkng.data.model.NotesDTO
 import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import javax.inject.Inject
 
 /**
  * @author Kakyire
  * Created by Daniel Frimpong on June 09, 2022.
  * https://github.com/kakyire
  */
-class NotesDTOMapper {
+class NotesDTOMapper @Inject constructor() {
 
     fun NotesDTO.toNotes(): Notes {
         return Notes(
