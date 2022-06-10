@@ -12,8 +12,8 @@ import java.io.Serializable
 @Keep
 data class Notes(
     val id:String,
-    val title: String,
-    val content: String,
-    val createdOn: String,
-    val modifiedOn: String
+    var title: String,
+    var content: String,
+    var createdOn: String,
+    var modifiedOn: String
 ):Serializable
