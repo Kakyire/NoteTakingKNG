@@ -24,11 +24,11 @@
             android:layout_marginHorizontal="@dimen/margin_16"
             android:scrollbars="none"
             android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchView"
             tools:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            tools:listitem="@layout/note_list_items"
+            tools:listitem="@layout/date_header_list_items"
             tools:visibility="visible" />
 
         <TextView

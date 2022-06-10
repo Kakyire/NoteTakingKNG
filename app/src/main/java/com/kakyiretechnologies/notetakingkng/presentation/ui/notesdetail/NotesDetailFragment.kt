@@ -28,7 +28,15 @@ class NotesDetailFragment : Fragment(R.layout.fragment_notes_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNotesDetailBinding.bind(view)
+        assignValuesToViews()
         setHasOptionsMenu(true)
+    }
+
+    private fun assignValuesToViews() = with(binding) {
+        navArgs.notes.apply {
+            tvTitle.text = title
+            tvContent.text = content
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

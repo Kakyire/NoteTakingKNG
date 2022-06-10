@@ -10,5 +10,7 @@ import javax.inject.Inject
  */
 class GetNotesUseCase @Inject constructor(private val notesRepository: NotesRepository) {
 
-    operator fun invoke()=notesRepository.getAllNotes()
+    operator fun invoke(){
+        notesRepository.getAllNotes()
+    }
 }
