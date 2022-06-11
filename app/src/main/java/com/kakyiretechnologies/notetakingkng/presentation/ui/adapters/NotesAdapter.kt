@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.NoteListItemsBinding
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 
 class NotesAdapter @Inject constructor(var listener: OnRecyclerViewClickListener) :
-    ListAdapter<Notes, NotesAdapter.NotesViewHolder>(DIFF_UTIL) {
+    ListAdapter<Note, NotesAdapter.NotesViewHolder>(DIFF_UTIL) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
@@ -39,14 +39,14 @@ class NotesAdapter @Inject constructor(var listener: OnRecyclerViewClickListener
     inner class NotesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = NoteListItemsBinding.bind(itemView)
 
-        fun bind(notes: Notes, listener: OnRecyclerViewClickListener) = with(binding) {
-            tvTitle.text = notes.title
-            tvContent.text = notes.content
-            tvCreatedOn.text = notes.createdOn
-            tvModified.text = notes.modifiedOn
+        fun bind(note: Note, listener: OnRecyclerViewClickListener) = with(binding) {
+            tvTitle.text = note.title
+            tvContent.text = note.content
+            tvCreatedOn.text = note.createdOn
+            tvModified.text = note.modifiedOn
 
             itemView.setOnClickListener {
-                listener.onItemClick(notes)
+                listener.onItemClick(note)
             }
         }
     }
@@ -55,12 +55,12 @@ class NotesAdapter @Inject constructor(var listener: OnRecyclerViewClickListener
 
     companion object {
 
-        private val DIFF_UTIL = object : DiffUtil.ItemCallback<Notes>() {
-            override fun areItemsTheSame(oldItem: Notes, newItem: Notes): Boolean {
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<Note>() {
+            override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Notes, newItem: Notes): Boolean {
+            override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
                 return oldItem == newItem
             }
         }

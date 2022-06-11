@@ -5,7 +5,7 @@ import com.kakyiretechnologies.notetakingkng.domain.repositories.NotesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 
 /**
  * @author Kakyire
@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
  * https://github.com/kakyire
  */
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     @Binds

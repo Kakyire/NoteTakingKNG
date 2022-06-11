@@ -8,5 +8,5 @@ package com.kakyiretechnologies.notetakingkng.domain.model
 
 data class NoteHeaders(
     val date: String,
-    val notes: List<Notes>
+    val notes: List<Note>
 )

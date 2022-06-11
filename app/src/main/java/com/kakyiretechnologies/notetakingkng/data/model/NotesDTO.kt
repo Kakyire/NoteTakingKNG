@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.util.*
 
 /**
  * @author Kakyire
@@ -14,7 +13,7 @@ import java.util.*
 @Entity(tableName = "Notes")
 data class NotesDTO(
     @PrimaryKey
-    val id: String = UUID.randomUUID().toString(),
+    val id: String,
     val title: String,
     val content: String,
     @ColumnInfo(name = "created_on")

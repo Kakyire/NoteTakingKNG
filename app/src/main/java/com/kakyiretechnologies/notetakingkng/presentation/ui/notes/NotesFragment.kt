@@ -2,13 +2,13 @@ package com.kakyiretechnologies.notetakingkng.presentation.ui.notes
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.FragmentNotesBinding
-import com.kakyiretechnologies.notetakingkng.domain.model.NoteHeaders
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.presentation.ui.adapters.DateHeaderAdapter
-import com.kakyiretechnologies.notetakingkng.presentation.ui.adapters.NotesAdapter
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,54 +30,33 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
     @Inject
     lateinit var dateHeaderAdapter: DateHeaderAdapter
 
+    private val viewModel by viewModels<NotesViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNotesBinding.bind(view)
 
-        setupRecyclerView()
+        binding.rvNotes.adapter = dateHeaderAdapter
+
+        observeViewModel()
         onClickListeners()
     }
 
-    private fun setupRecyclerView() = with(binding) {
-        val listOfNotes = mutableListOf<Notes>()
-
-        for (i in 1..6) {
-            val createdOn = when {
-                i % 2 == 0 -> "June 2, 2022"
-                i % 3 == 0 -> "June 3, 2022"
-                else -> "June 1, 2022"
-            }
-
-            val note = Notes(
-                id = "$i",
-                title = "title$i",
-                content = "content$i",
-                modifiedOn = "June 7, 2022",
-                createdOn = createdOn
-            )
-
-            listOfNotes.add(note)
-
-
+    private fun observeViewModel() = with(viewModel) {
+        getNotes()
+        notes.observe(viewLifecycleOwner) {
+            dateHeaderAdapter.submitList(it)
         }
-        if (listOfNotes.isNotEmpty()) rvNotes.visibility = View.VISIBLE
-        else tvEmptyNotes.visibility = View.VISIBLE
+    }
 
-        val groupedNotes = mutableListOf<NoteHeaders>()
-        val notesList = mutableListOf<Notes>()
-        listOfNotes.groupBy {
-            it.createdOn
-        }.forEach { (dates, notes) ->
+    private fun searchForNotes(query: String?) = with(viewModel) {
 
-            groupedNotes.add(NoteHeaders(dates, notes))
-
-
+        if (!query.isNullOrEmpty()) {
+            searchNotes(query)
+            return@with
         }
 
-        dateHeaderAdapter.submitList(groupedNotes)
-
-        rvNotes.adapter = dateHeaderAdapter
+        getNotes()
 
     }
 
@@ -87,9 +66,22 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
                 NotesFragmentDirections.actionNotesFragmentToAddNotesFragment()
             )
         }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchForNotes(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchForNotes(newText)
+                return true
+            }
+        })
+
     }
 
-    override fun onItemClick(note: Notes) {
+    override fun onItemClick(note: Note) {
         navigateToNextPage(
             NotesFragmentDirections.actionNotesFragmentToNotesDetailFragment(note)
         )

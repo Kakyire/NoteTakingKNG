@@ -1,7 +1,7 @@
 package com.kakyiretechnologies.notetakingkng.data.mappers
 
 import com.kakyiretechnologies.notetakingkng.data.model.NotesDTO
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import javax.inject.Inject
 
 /**
@@ -11,8 +11,8 @@ import javax.inject.Inject
  */
 class NotesDTOMapper @Inject constructor() {
 
-    fun NotesDTO.toNotes(): Notes {
-        return Notes(
+    fun NotesDTO.toNotes(): Note {
+        return Note(
             id = id,
             title = title,
             content = content,
@@ -21,12 +21,13 @@ class NotesDTOMapper @Inject constructor() {
         )
     }
 
-    fun notesToNotesDTO(notes: Notes): NotesDTO {
+    fun notesToNotesDTO(note: Note): NotesDTO {
         return NotesDTO(
-            title = notes.title,
-            content = notes.content,
-            modifiedOn = notes.modifiedOn,
-            createdOn = notes.createdOn
+            id = note.id,
+            title = note.title,
+            content = note.content,
+            modifiedOn = note.modifiedOn,
+            createdOn = note.createdOn
         )
     }
 }

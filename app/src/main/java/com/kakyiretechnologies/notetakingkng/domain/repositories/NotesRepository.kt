@@ -1,6 +1,6 @@
 package com.kakyiretechnologies.notetakingkng.domain.repositories
 
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.Flow
  */
 interface NotesRepository {
 
-    fun getAllNotes(): Flow<List<Notes>>
+    fun getAllNotes(): Flow<List<Note>>
 
-    fun searchNotes(query: String): Flow<List<Notes>>
+    fun searchNotes(query: String): Flow<List<Note>>
 
-    suspend fun addNote(note: Notes)
+    suspend fun addNote(note: Note)
 
-    suspend fun updateNote(note: Notes)
+    suspend fun updateNote(note: Note)
 
-    suspend fun deleteNote(note: Notes)
+    suspend fun deleteNote(note: Note)
 }

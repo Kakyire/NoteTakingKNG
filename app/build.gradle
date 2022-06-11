@@ -18,6 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.kakyiretechnologies.notetakingkng.CustomTestRunner"
     }
 
     buildTypes {
@@ -68,6 +69,9 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+
 
     //Unit testing
     testImplementation "junit:junit:$jUnitVersion"
@@ -81,5 +85,6 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressonVersion"
     androidTestImplementation "com.google.truth:truth:$truthVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
 
 }

@@ -1,6 +1,6 @@
 package com.kakyiretechnologies.notetakingkng.domain.usecases
 
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.domain.repositories.NotesRepository
 import javax.inject.Inject
 
@@ -11,5 +11,5 @@ import javax.inject.Inject
  */
 class UpdateNotesUseCase @Inject constructor(private val notesRepository: NotesRepository) {
 
-    suspend operator fun invoke(note: Notes) = notesRepository.updateNote(note)
+    suspend operator fun invoke(note: Note) = notesRepository.updateNote(note)
 }

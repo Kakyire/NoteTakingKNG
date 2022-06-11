@@ -1,7 +1,7 @@
 package com.kakyiretechnologies.notetakingkng.data.repositories
 
 import com.google.common.truth.Truth.assertThat
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -11,9 +11,9 @@ import org.junit.Test
  * Created by Daniel Frimpong on June 10, 2022.
  * https://github.com/kakyire
  */
-class NotesRepositoryImplTest {
+class NoteRepositoryImplTest {
 
-    private val notes = mutableListOf<Notes>()
+    private val notes = mutableListOf<Note>()
 
     private val notesSize = 5
 
@@ -24,7 +24,7 @@ class NotesRepositoryImplTest {
 
         for (i in 1..notesSize) {
 
-            val note = Notes(
+            val note = Note(
                 id = "$i",
                 title = "title$i",
                 content = "content$i",
@@ -58,7 +58,7 @@ class NotesRepositoryImplTest {
 
     @Test
     fun `Add note(s) to the available notes`() = runBlocking {
-        val note = Notes(
+        val note = Note(
             id = "32",
             title = "title32",
             content = "content32",
@@ -74,14 +74,14 @@ class NotesRepositoryImplTest {
 
     @Test
     fun `Update note at specific id`() = runBlocking {
-        val note = Notes(
+        val note = Note(
             id = "3",
             title = "new title",
             content = "new content",
             modifiedOn = "June 7, 2022",
             createdOn = "June 6, 2022"
         )
-        val failExpected = Notes(
+        val failExpected = Note(
             id = "3",
             title = "this will fail",
             content = "wrong content",

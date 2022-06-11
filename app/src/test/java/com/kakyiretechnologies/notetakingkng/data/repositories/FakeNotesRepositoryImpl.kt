@@ -1,6 +1,6 @@
 package com.kakyiretechnologies.notetakingkng.data.repositories
 
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.domain.repositories.NotesRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Created by Daniel Frimpong on June 10, 2022.
  * https://github.com/kakyire
  */
-class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList<Notes> = mutableListOf()) :
+class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList<Note> = mutableListOf()) :
     NotesRepository {
 
 
@@ -18,11 +18,11 @@ class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList
 
     override fun searchNotes(query: String) = flow { emit(notes.filter { it.title == query }.toList()) }
 
-    override suspend fun addNote(note: Notes) {
+    override suspend fun addNote(note: Note) {
         notes.add(note)
     }
 
-    override suspend fun updateNote(note: Notes) {
+    override suspend fun updateNote(note: Note) {
         notes.find {
             it.id == note.id
         }?.apply {
@@ -33,7 +33,7 @@ class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList
         }
     }
 
-    override suspend fun deleteNote(note: Notes) {
+    override suspend fun deleteNote(note: Note) {
         notes.remove(note)
     }
 }

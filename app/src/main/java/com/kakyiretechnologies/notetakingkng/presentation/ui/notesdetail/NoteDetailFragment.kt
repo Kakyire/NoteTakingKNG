@@ -8,7 +8,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kakyiretechnologies.notetakingkng.R
-import com.kakyiretechnologies.notetakingkng.databinding.FragmentNotesDetailBinding
+import com.kakyiretechnologies.notetakingkng.databinding.FragmentNoteDetailBinding
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,22 +18,22 @@ import dagger.hilt.android.AndroidEntryPoint
  * https://github.com/kakyire
  */
 @AndroidEntryPoint
-class NotesDetailFragment : Fragment(R.layout.fragment_notes_detail) {
+class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
 
 
-    private lateinit var binding: FragmentNotesDetailBinding
+    private lateinit var binding: FragmentNoteDetailBinding
 
-    private val navArgs by navArgs<NotesDetailFragmentArgs>()
+    private val navArgs by navArgs<NoteDetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentNotesDetailBinding.bind(view)
+        binding = FragmentNoteDetailBinding.bind(view)
         assignValuesToViews()
         setHasOptionsMenu(true)
     }
 
     private fun assignValuesToViews() = with(binding) {
-        navArgs.notes.apply {
+        navArgs.note.apply {
             tvTitle.text = title
             tvContent.text = content
         }
@@ -47,8 +47,8 @@ class NotesDetailFragment : Fragment(R.layout.fragment_notes_detail) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menEdit -> navigateToNextPage(
-                NotesDetailFragmentDirections
-                    .actionNotesDetailFragmentToAddNotesFragment(navArgs.notes)
+                NoteDetailFragmentDirections
+                    .actionNotesDetailFragmentToAddNotesFragment(navArgs.note)
             )
         }
         return super.onOptionsItemSelected(item)

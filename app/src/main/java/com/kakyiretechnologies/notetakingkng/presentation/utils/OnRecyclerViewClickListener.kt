@@ -1,6 +1,6 @@
 package com.kakyiretechnologies.notetakingkng.presentation.utils
 
-import com.kakyiretechnologies.notetakingkng.domain.model.Notes
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 
 /**
  * @author Kakyire
@@ -8,5 +8,5 @@ import com.kakyiretechnologies.notetakingkng.domain.model.Notes
  * https://github.com/kakyire
  */
 interface OnRecyclerViewClickListener {
-fun onItemClick(note:Notes)
+fun onItemClick(note:Note)
 }
