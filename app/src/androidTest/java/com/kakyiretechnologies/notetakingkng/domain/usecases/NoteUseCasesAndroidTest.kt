@@ -121,7 +121,7 @@ class NoteUseCasesAndroidTest {
     }
 
     @Test
-    fun returnNote_withSpecificId() {
+    fun returnNote_withSpecificId()= runBlocking {
         val note = Note(
             id = "2",
             title = "title2",
@@ -130,8 +130,10 @@ class NoteUseCasesAndroidTest {
             createdOn = "June 2, 2022"
         )
 
-        val results = getNoteDetailsUseCase.invoke("2")
-        assertThat(results).isEqualTo(note)
+            getNoteDetailsUseCase.invoke("2").collect{
+                assertThat(it).isEqualTo(note)
+            }
+
 
     }
 }

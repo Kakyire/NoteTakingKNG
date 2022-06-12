@@ -8,3 +8,5 @@ package com.kakyiretechnologies.notetakingkng.domain.utils
 
 const val DATABASE_VERSION = 1
 const val DATABASE_NAME = "note_taking.db"
+const val DEFAULT_INPUT_DATE_FORMAT = "MMM d, YYYY HH:mm:ss"
+const val CREATED_DATE_FORMAT="MMMM d, YYYY"

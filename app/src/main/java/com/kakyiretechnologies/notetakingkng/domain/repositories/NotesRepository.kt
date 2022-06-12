@@ -14,7 +14,7 @@ interface NotesRepository {
 
     fun searchNotes(query: String): Flow<List<Note>>
 
-    fun getNoteDetails(id:String):Note
+    fun getNoteDetails(id:String):Flow<Note>
 
     suspend fun addNote(note: Note)
 

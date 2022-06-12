@@ -19,8 +19,8 @@ class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList
     override fun searchNotes(query: String) =
         flow { emit(notes.filter { it.title == query }.toList()) }
 
-    override fun getNoteDetails(id: String): Note {
-        return notes.single { it.id == id }
+    override fun getNoteDetails(id: String)=flow {
+       emit(notes.single { it.id == id })
     }
 
     override suspend fun addNote(note: Note) {

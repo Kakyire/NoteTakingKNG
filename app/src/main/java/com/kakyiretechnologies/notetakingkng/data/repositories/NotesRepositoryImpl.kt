@@ -23,12 +23,12 @@ class NotesRepositoryImpl @Inject constructor(
     override fun getAllNotes() = flow { emit(noteDao.getAllNotes().getNotes()) }
 
     override fun searchNotes(query: String) =
-        flow { emit(noteDao.searchNotes(query).getNotes()) }.flowOn(Dispatchers.IO)
+        flow { emit(noteDao.searchNotes("$query%").getNotes()) }.flowOn(Dispatchers.IO)
 
-    override fun getNoteDetails(id: String): Note {
+    override fun getNoteDetails(id: String) = flow {
         val note = noteDao.getNoteDetail(id)
-        return mapper.notesDTOtoNotes(note)
-    }
+        emit(mapper.notesDTOtoNotes(note))
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun addNote(note: Note) {
         val noteDTO = mapper.notesToNotesDTO(note)

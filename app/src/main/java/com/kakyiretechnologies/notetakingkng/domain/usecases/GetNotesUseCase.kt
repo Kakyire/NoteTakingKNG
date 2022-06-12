@@ -3,9 +3,7 @@ package com.kakyiretechnologies.notetakingkng.domain.usecases
 import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.domain.model.NoteHeaders
 import com.kakyiretechnologies.notetakingkng.domain.repositories.NotesRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
@@ -31,5 +29,5 @@ class GetNotesUseCase @Inject constructor(private val notesRepository: NotesRepo
             }
 
         emit(groupedNotes.toList())
-    }.flowOn(Dispatchers.IO)
+    }/*.flowOn(Dispatchers.IO)*/
 }

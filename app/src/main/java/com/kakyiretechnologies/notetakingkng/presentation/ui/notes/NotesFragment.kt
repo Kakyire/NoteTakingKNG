@@ -1,6 +1,7 @@
 package com.kakyiretechnologies.notetakingkng.presentation.ui.notes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import com.kakyiretechnologies.notetakingkng.databinding.FragmentNotesBinding
 import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.presentation.ui.adapters.DateHeaderAdapter
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
+import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.hideView
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.showView
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +48,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
     private fun observeViewModel() = with(viewModel) {
         getNotes()
         notes.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) binding.tvEmptyNotes.showView()
+            if (it.isEmpty()) binding.tvEmptyNotes.showView() else binding.tvEmptyNotes.hideView()
+            Log.d(TAG, "observeViewModel: $it")
             dateHeaderAdapter.submitList(it)
         }
     }
