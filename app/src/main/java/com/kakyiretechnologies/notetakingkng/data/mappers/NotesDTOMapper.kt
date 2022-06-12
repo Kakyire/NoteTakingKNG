@@ -11,23 +11,14 @@ import javax.inject.Inject
  */
 class NotesDTOMapper @Inject constructor() {
 
-    fun NotesDTO.toNotes(): Note {
-        return Note(
-            id = id,
-            title = title,
-            content = content,
-            modifiedOn = modifiedOn,
-            createdOn = createdOn
-        )
-    }
-
     fun notesDTOtoNotes(notesDTO: NotesDTO): Note {
         return Note(
             id = notesDTO.id,
             title = notesDTO.title,
             content = notesDTO.content,
             modifiedOn = notesDTO.modifiedOn,
-            createdOn = notesDTO.createdOn
+            createdOn = notesDTO.createdOn,
+            voiceNote = notesDTO.voiceNote
         )
     }
 
@@ -38,7 +29,8 @@ class NotesDTOMapper @Inject constructor() {
             title = note.title,
             content = note.content,
             modifiedOn = note.modifiedOn,
-            createdOn = note.createdOn
+            createdOn = note.createdOn,
+            voiceNote = note.voiceNote
         )
     }
 }

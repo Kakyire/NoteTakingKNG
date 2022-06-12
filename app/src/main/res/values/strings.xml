@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Note Taking - KNG</string>
+    <string name="app_name">Note Taking</string>
     <string name="search_note_by_title_date">Search note by title/date</string>
     <string name="created_on">Created on:</string>
     <string name="modified">Modified:</string>
@@ -11,4 +11,5 @@
     <string name="empty_notes_are_not_saved">Empty notes are not saved</string>
     <string name="save">Save</string>
     <string name="note_title_is_required">Title is required</string>
+    <string name="record_audio">Record Audio</string>
 </resources>

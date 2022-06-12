@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.DateHeaderListItemsBinding
 import com.kakyiretechnologies.notetakingkng.domain.model.NoteHeaders
-import com.kakyiretechnologies.notetakingkng.domain.utils.daysPast
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
 import javax.inject.Inject
 
@@ -43,7 +42,7 @@ class DateHeaderAdapter @Inject constructor(
             noteHeaders: NoteHeaders,
             listener: OnRecyclerViewClickListener
         ) = with(binding) {
-            tvDate.text = noteHeaders.date.daysPast()
+            tvDate.text = noteHeaders.date//.daysPast()
             rvNotes.adapter = notesAdapter
             notesAdapter.listener = listener
             notesAdapter.submitList(noteHeaders.notes)

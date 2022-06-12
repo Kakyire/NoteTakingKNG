@@ -67,6 +67,11 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
+    //Play Services
+    implementation "com.google.android.gms:play-services-auth:$playServices"
+//    implementation 'com.google.apis:google-api-services-drive:v3-rev20211107-1.32.1'
+
+
     //Room
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"

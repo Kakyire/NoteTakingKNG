@@ -23,8 +23,8 @@
 
 
         <TextView
-            android:layout_width="0dp"
             android:id="@+id/tvContent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:lineSpacingExtra="@dimen/margin_5"
@@ -34,6 +34,49 @@
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="@tools:sample/lorem/random" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/audioLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/tvContent"
+            app:layout_constraintStart_toStartOf="@id/tvContent"
+            app:layout_constraintTop_toBottomOf="@id/tvContent"
+            tools:visibility="visible">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_5"
+                android:background="?attr/colorOnBackground"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/btnPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:src="@drawable/ic_play"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:ignore="ContentDescription" />
+
+            <SeekBar
+
+                android:id="@+id/audioProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/btnPlay"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnPlay"
+                app:layout_constraintTop_toTopOf="@id/btnPlay" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

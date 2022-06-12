@@ -1,6 +1,8 @@
 package com.kakyiretechnologies.notetakingkng.di
 
+import com.kakyiretechnologies.notetakingkng.data.repositories.AuthRepositoryImpl
 import com.kakyiretechnologies.notetakingkng.data.repositories.NotesRepositoryImpl
+import com.kakyiretechnologies.notetakingkng.domain.repositories.AuthRepository
 import com.kakyiretechnologies.notetakingkng.domain.repositories.NotesRepository
 import dagger.Binds
 import dagger.Module
@@ -18,4 +20,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindNoteRepository(notesRepositoryImpl: NotesRepositoryImpl):NotesRepository
+
+    @Binds
+    abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl):AuthRepository
 }
