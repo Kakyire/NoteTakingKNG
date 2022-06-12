@@ -85,20 +85,22 @@ class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
     }
 
     private fun initializeSeekBar() = with(binding) {
-        audioProgress.max = mediaPlayer?.duration!!
 
         val handler = Handler()
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                try {
-                    audioProgress.progress = mediaPlayer!!.currentPosition
-                    handler.postDelayed(this, 1000)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    audioProgress.progress = 0
+        if (mediaPlayer!!.isPlaying) {
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    try {
+                        audioProgress.progress = mediaPlayer!!.currentPosition
+
+                        handler.postDelayed(this, 1000)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        audioProgress.progress = 0
+                    }
                 }
-            }
-        }, 0)
+            }, 0)
+        }
     }
 
     private fun initSignIn() {
@@ -130,23 +132,6 @@ class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
             tvContent.text = content
             Log.d(TAG, "assignValuesToViews: Filename : $voiceNote")
             audioLayout.isVisible = !voiceNote.isNullOrEmpty()
-        }
-    }
-
-    private fun initAudioItems(canInit: Boolean) = with(binding) {
-        if (canInit) {
-            audioLayout.showView()
-
-            mediaPlayer = MediaPlayer().apply {
-                try {
-                    setDataSource(note.voiceNote)
-                    prepare()
-                } catch (exception: IOException) {
-                    exception.printStackTrace()
-                }
-            }
-            mediaPlayer = null
-
         }
     }
 
@@ -201,14 +186,15 @@ class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
             try {
 
                 setDataSource(note.voiceNote)
-                setOnCompletionListener { stopPlaying() }
                 prepare()
+                setOnCompletionListener { stopPlaying() }
                 start()
             } catch (exception: IOException) {
                 exception.printStackTrace()
             }
 
-            mediaPlayer?.let { initializeSeekBar() }
+            mediaPlayer?.let { initializeSeekBar()
+                binding.audioProgress.max = mediaPlayer!!.duration}
         }
     }
 
