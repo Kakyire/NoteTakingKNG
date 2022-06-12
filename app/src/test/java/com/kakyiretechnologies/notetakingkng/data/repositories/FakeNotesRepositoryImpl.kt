@@ -16,7 +16,12 @@ class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList
 
     override fun getAllNotes() = flow { emit(notes) }
 
-    override fun searchNotes(query: String) = flow { emit(notes.filter { it.title == query }.toList()) }
+    override fun searchNotes(query: String) =
+        flow { emit(notes.filter { it.title == query }.toList()) }
+
+    override fun getNoteDetails(id: String): Note {
+        return notes.single { it.id == id }
+    }
 
     override suspend fun addNote(note: Note) {
         notes.add(note)
@@ -26,10 +31,10 @@ class FakeNotesRepositoryImpl @Inject constructor(private val notes: MutableList
         notes.find {
             it.id == note.id
         }?.apply {
-            title=note.title
-            content =note.content
-            modifiedOn=note.modifiedOn
-            createdOn=note.createdOn
+            title = note.title
+            content = note.content
+            modifiedOn = note.modifiedOn
+            createdOn = note.createdOn
         }
     }
 

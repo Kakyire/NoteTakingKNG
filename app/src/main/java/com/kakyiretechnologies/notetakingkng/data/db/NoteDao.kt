@@ -1,6 +1,5 @@
 package com.kakyiretechnologies.notetakingkng.data.db
 
-import android.os.Build.VERSION_CODES.S
 import androidx.room.*
 import com.kakyiretechnologies.notetakingkng.data.model.NotesDTO
 
@@ -17,6 +16,9 @@ interface NoteDao {
 
     @Query("SELECT * FROM notes WHERE created_on LIKE :query OR title  LIKE :query")
     fun searchNotes(query: String): List<NotesDTO>
+
+    @Query("SELECT * FROM notes WHERE id = :id ")
+    fun getNoteDetail(id: String): NotesDTO
 
     @Update
     suspend fun updateNote(note: NotesDTO)

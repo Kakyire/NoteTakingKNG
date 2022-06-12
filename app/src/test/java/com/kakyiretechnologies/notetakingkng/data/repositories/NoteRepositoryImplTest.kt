@@ -55,6 +55,20 @@ class NoteRepositoryImplTest {
             .collect { assertThat(it).isNotEmpty() }
     }
 
+    @Test
+    fun `Get note detail using note id`() {
+
+        val note = Note(
+            id = "2",
+            title = "title2",
+            content = "content2",
+            modifiedOn = "June 7, 2022",
+            createdOn = "June 2, 2022"
+        )
+        val results = repository.getNoteDetails("2")
+
+        assertThat(results).isEqualTo(note)
+    }
 
     @Test
     fun `Add note(s) to the available notes`() = runBlocking {
@@ -96,13 +110,13 @@ class NoteRepositoryImplTest {
     }
 
     @Test
-    fun `Delete note from the available notes`()= runBlocking {
+    fun `Delete note from the available notes`() = runBlocking {
 
 
         repository.deleteNote(notes[3])
 
         repository.getAllNotes()
-            .collect{
+            .collect {
                 assertThat(it.size).isEqualTo(4)
             }
     }

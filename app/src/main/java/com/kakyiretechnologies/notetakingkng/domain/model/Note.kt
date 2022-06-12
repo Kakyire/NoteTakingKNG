@@ -1,6 +1,7 @@
 package com.kakyiretechnologies.notetakingkng.domain.model
 
 import androidx.annotation.Keep
+import com.kakyiretechnologies.notetakingkng.domain.utils.getCurrentDate
 import java.io.Serializable
 import java.util.*
 
@@ -14,8 +15,8 @@ data class Note(
     val id: String = UUID.randomUUID().toString(),
     var title: String = "",
     var content: String = "",
-    var createdOn: String = "",
-    var modifiedOn: String = ""
+    var createdOn: String = getCurrentDate(),
+    var modifiedOn: String = getCurrentDate()
 ) : Serializable
 
 

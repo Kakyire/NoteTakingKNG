@@ -10,11 +10,24 @@
         android:name="com.kakyiretechnologies.notetakingkng.presentation.ui.addnotes.AddEditNoteFragment"
         android:label="Add Notes"
         tools:layout="@layout/fragment_add_edit_note">
+
+        <action
+            android:id="@+id/action_addNotesFragment_to_notesFragment"
+            app:destination="@id/notesFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/notesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addNotesFragment_to_notesDetailFragment"
+            app:destination="@id/notesDetailFragment"
+            app:popUpTo="@id/notesDetailFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
         <argument
-            android:name="note"
-            android:defaultValue="@null"
-            app:argType="com.kakyiretechnologies.notetakingkng.domain.model.Note"
-            app:nullable="true" />
+            android:name="noteId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/notesFragment"
@@ -32,12 +45,12 @@
         android:id="@+id/notesDetailFragment"
         android:name="com.kakyiretechnologies.notetakingkng.presentation.ui.notesdetail.NoteDetailFragment"
         android:label="Notes"
-        tools:layout="@layout/fragment_note_detail" >
+        tools:layout="@layout/fragment_note_detail">
         <action
             android:id="@+id/action_notesDetailFragment_to_addNotesFragment"
             app:destination="@id/addNotesFragment" />
-        <argument
-            android:name="note"
-            app:argType="com.kakyiretechnologies.notetakingkng.domain.model.Note" />
+         <argument
+            android:name="noteId"
+            app:argType="string" />
     </fragment>
 </navigation>

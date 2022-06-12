@@ -21,6 +21,17 @@ class NotesDTOMapper @Inject constructor() {
         )
     }
 
+    fun notesDTOtoNotes(notesDTO: NotesDTO): Note {
+        return Note(
+            id = notesDTO.id,
+            title = notesDTO.title,
+            content = notesDTO.content,
+            modifiedOn = notesDTO.modifiedOn,
+            createdOn = notesDTO.createdOn
+        )
+    }
+
+
     fun notesToNotesDTO(note: Note): NotesDTO {
         return NotesDTO(
             id = note.id,

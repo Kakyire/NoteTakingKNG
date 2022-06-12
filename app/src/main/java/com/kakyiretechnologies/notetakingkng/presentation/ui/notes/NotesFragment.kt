@@ -11,6 +11,7 @@ import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.presentation.ui.adapters.DateHeaderAdapter
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
+import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.showView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -45,6 +46,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
     private fun observeViewModel() = with(viewModel) {
         getNotes()
         notes.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) binding.tvEmptyNotes.showView()
             dateHeaderAdapter.submitList(it)
         }
     }
@@ -83,7 +85,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
 
     override fun onItemClick(note: Note) {
         navigateToNextPage(
-            NotesFragmentDirections.actionNotesFragmentToNotesDetailFragment(note)
+            NotesFragmentDirections.actionNotesFragmentToNotesDetailFragment(note.id)
         )
     }
 }

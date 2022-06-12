@@ -8,4 +8,7 @@
     <string name="title">Title</string>
     <string name="note_content">Note content</string>
     <string name="edit_note">Edit Note</string>
+    <string name="empty_notes_are_not_saved">Empty notes are not saved</string>
+    <string name="save">Save</string>
+    <string name="note_title_is_required">Title is required</string>
 </resources>

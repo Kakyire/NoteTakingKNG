@@ -6,9 +6,11 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.FragmentNoteDetailBinding
+import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,22 +27,34 @@ class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
 
     private val navArgs by navArgs<NoteDetailFragmentArgs>()
 
+    private val viewModel by viewModels<DetailsNoteViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNoteDetailBinding.bind(view)
-        assignValuesToViews()
+
         setHasOptionsMenu(true)
+        observeViewModel()
+
+        viewModel.getNoteDetails(navArgs.noteId)
     }
 
-    private fun assignValuesToViews() = with(binding) {
-        navArgs.note.apply {
+    private fun observeViewModel() {
+        viewModel.noteDetail.observe(viewLifecycleOwner) {
+            assignValuesToViews(it)
+        }
+    }
+
+
+    private fun assignValuesToViews(note: Note) = with(binding) {
+        note.apply {
             tvTitle.text = title
             tvContent.text = content
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.edit_menu, menu)
+        inflater.inflate(R.menu.detail_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -48,7 +62,7 @@ class NoteDetailFragment : Fragment(R.layout.fragment_note_detail) {
         when (item.itemId) {
             R.id.menEdit -> navigateToNextPage(
                 NoteDetailFragmentDirections
-                    .actionNotesDetailFragmentToAddNotesFragment(navArgs.note)
+                    .actionNotesDetailFragmentToAddNotesFragment(navArgs.noteId)
             )
         }
         return super.onOptionsItemSelected(item)

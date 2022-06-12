@@ -31,6 +31,9 @@ class NoteUseCasesAndroidTest {
     lateinit var searchNotesUseCase: SearchNotesUseCase
 
     @Inject
+    lateinit var getNoteDetailsUseCase: GetNoteDetailsUseCase
+
+    @Inject
     lateinit var deleteNotesUseCase: DeleteNotesUseCase
 
     @Inject
@@ -114,6 +117,21 @@ class NoteUseCasesAndroidTest {
         searchNotesUseCase.invoke(title)
             .collect { assertThat(it).isNotEmpty() }
 
+
+    }
+
+    @Test
+    fun returnNote_withSpecificId() {
+        val note = Note(
+            id = "2",
+            title = "title2",
+            content = "content2",
+            modifiedOn = "June 7, 2022",
+            createdOn = "June 2, 2022"
+        )
+
+        val results = getNoteDetailsUseCase.invoke("2")
+        assertThat(results).isEqualTo(note)
 
     }
 }
