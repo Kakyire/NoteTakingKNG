@@ -20,6 +20,8 @@ data class NotesDTO(
     val createdOn: String,
     @ColumnInfo(name = "modified_on")
     val modifiedOn: String,
+    @ColumnInfo(name = "header_date")
+    var headerDate: String,
     @ColumnInfo(name = "voice_note")
     val voiceNote: String
 ) : Serializable

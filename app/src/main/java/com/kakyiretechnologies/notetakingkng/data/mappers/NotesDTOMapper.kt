@@ -19,6 +19,7 @@ class NotesDTOMapper @Inject constructor() {
             modifiedOn = notesDTO.modifiedOn.toLong(),
             createdOn = notesDTO.createdOn,
             voiceNote = notesDTO.voiceNote,
+            headerDate = notesDTO.headerDate.toLong()
         )
     }
 
@@ -30,7 +31,8 @@ class NotesDTOMapper @Inject constructor() {
             content = note.content,
             modifiedOn = note.modifiedOn.toString(),
             createdOn = note.createdOn,
-            voiceNote = note.voiceNote
+            voiceNote = note.voiceNote,
+            headerDate = note.headerDate.toString()
         )
     }
 }

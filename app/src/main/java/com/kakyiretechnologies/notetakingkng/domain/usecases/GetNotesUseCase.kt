@@ -24,7 +24,7 @@ class GetNotesUseCase @Inject constructor(private val notesRepository: NotesRepo
                 notes.groupBy {
                     it.createdOn
                 }.forEach { (_, noteList) ->
-                    groupedNotes.add(NoteHeaders(noteList[0].modifiedOn.toString(), noteList))
+                    groupedNotes.add(NoteHeaders(noteList[0].headerDate.toString(), noteList))
                 }
             }
 

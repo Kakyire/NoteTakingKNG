@@ -17,6 +17,7 @@ data class Note(
     var content: String = "",
     var createdOn: String = getCurrentDate(),
     var modifiedOn: Long = System.currentTimeMillis(),
+    var headerDate: Long = System.currentTimeMillis(),
     var voiceNote: String = ""
 ) : Serializable
 

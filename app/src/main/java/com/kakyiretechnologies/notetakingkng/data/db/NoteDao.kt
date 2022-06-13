@@ -11,10 +11,10 @@ import com.kakyiretechnologies.notetakingkng.data.model.NotesDTO
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM notes ORDER BY modified_on DESC ")
+    @Query("SELECT * FROM notes ORDER BY header_date DESC ")
     suspend fun getAllNotes(): List<NotesDTO>
 
-    @Query("SELECT * FROM notes WHERE created_on LIKE :query OR title  LIKE :query ORDER BY modified_on DESC ")
+    @Query("SELECT * FROM notes WHERE created_on LIKE :query OR title  LIKE :query ORDER BY header_date DESC ")
     fun searchNotes(query: String): List<NotesDTO>
 
     @Query("SELECT * FROM notes WHERE id = :id ")

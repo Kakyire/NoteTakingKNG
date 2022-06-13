@@ -19,7 +19,7 @@ class SearchNotesUseCase @Inject constructor(private val notesRepository: NotesR
                 notes.groupBy {
                     it.createdOn
                 }.forEach { (_, noteList) ->
-                    groupedNotes.add(NoteHeaders(noteList[0].modifiedOn.toString(), noteList))
+                    groupedNotes.add(NoteHeaders(noteList[0].headerDate.toString(), noteList))
                 }
             }
 
