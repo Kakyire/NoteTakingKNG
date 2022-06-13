@@ -16,9 +16,9 @@ class NotesDTOMapper @Inject constructor() {
             id = notesDTO.id,
             title = notesDTO.title,
             content = notesDTO.content,
-            modifiedOn = notesDTO.modifiedOn,
+            modifiedOn = notesDTO.modifiedOn.toLong(),
             createdOn = notesDTO.createdOn,
-            voiceNote = notesDTO.voiceNote
+            voiceNote = notesDTO.voiceNote,
         )
     }
 
@@ -28,7 +28,7 @@ class NotesDTOMapper @Inject constructor() {
             id = note.id,
             title = note.title,
             content = note.content,
-            modifiedOn = note.modifiedOn,
+            modifiedOn = note.modifiedOn.toString(),
             createdOn = note.createdOn,
             voiceNote = note.voiceNote
         )

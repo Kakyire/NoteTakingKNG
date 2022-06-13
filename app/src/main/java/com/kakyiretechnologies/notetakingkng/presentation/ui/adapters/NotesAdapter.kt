@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.NoteListItemsBinding
 import com.kakyiretechnologies.notetakingkng.domain.model.Note
+import com.kakyiretechnologies.notetakingkng.domain.utils.formatDate
+import com.kakyiretechnologies.notetakingkng.domain.utils.timeMoment
 import com.kakyiretechnologies.notetakingkng.presentation.utils.OnRecyclerViewClickListener
 import javax.inject.Inject
 
@@ -42,8 +44,8 @@ class NotesAdapter @Inject constructor(var listener: OnRecyclerViewClickListener
         fun bind(note: Note, listener: OnRecyclerViewClickListener) = with(binding) {
             tvTitle.text = note.title
             tvContent.text = note.content
-            tvCreatedOn.text = note.createdOn//.daysPast()
-            tvModified.text = note.modifiedOn//timeAgo(note.modifiedOn)
+            tvCreatedOn.text = note.createdOn
+            tvModified.text = note.modifiedOn.formatDate().timeMoment
 
             itemView.setOnClickListener {
                 listener.onItemClick(note)

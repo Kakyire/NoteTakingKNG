@@ -25,7 +25,6 @@ import com.kakyiretechnologies.notetakingkng.databinding.FragmentNoteDetailBindi
 import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.domain.utils.GOOGLE_SIGN_IN_REQUEST_CODE
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.navigateToNextPage
-import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.showView
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 

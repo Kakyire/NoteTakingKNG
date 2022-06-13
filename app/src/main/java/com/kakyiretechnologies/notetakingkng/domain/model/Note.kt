@@ -15,8 +15,8 @@ data class Note(
     val id: String = UUID.randomUUID().toString(),
     var title: String = "",
     var content: String = "",
-    var createdOn: String = getCurrentDate(/*CREATED_DATE_FORMAT*/),
-    var modifiedOn: String = System.currentTimeMillis().toString(),
+    var createdOn: String = getCurrentDate(),
+    var modifiedOn: Long = System.currentTimeMillis(),
     var voiceNote: String = ""
 ) : Serializable
 

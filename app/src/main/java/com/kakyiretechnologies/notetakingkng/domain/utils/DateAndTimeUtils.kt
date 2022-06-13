@@ -5,34 +5,48 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun String.formatDate(
-    outputDateFormat: String = DEFAULT_INPUT_DATE_FORMAT,
-    inputDateFormat: String = "yyyy-MM-dd",
-    locale: Locale = Locale.getDefault(),
+fun String.formatDate(): String {
+    return convertDateToLong(this).formatDate().daysPast()
+}
+fun Long.formatDate(outputDateFormat: String = MODIFIED_DATE): String {
 
-    ): String {
+    SimpleDateFormat(
+        outputDateFormat,
+        Locale.getDefault()
+    )
+        .format(this)
 
-    val sdfOutput = SimpleDateFormat(outputDateFormat, locale)
-    val sdfInput = SimpleDateFormat(inputDateFormat, locale)
 
-    return sdfOutput.format(sdfInput.parse(this)!!)
+    return SimpleDateFormat(
+        outputDateFormat,
+        Locale.getDefault()
+    )
+        .format(this)
 
 
 }
 
+
+fun convertDateToLong(time: String): Long {
+    val timeFormat = SimpleDateFormat(DEFAULT_INPUT_DATE_FORMAT)
+    val calendar = Calendar.getInstance()
+    calendar.time = timeFormat.parse(time)
+    return timeFormat.parse(timeFormat.format(calendar.time)).time
+}
+
 val String.timeMoment: String
     get() {
-        val simpleDateFormat = SimpleDateFormat(DEFAULT_INPUT_DATE_FORMAT, Locale.getDefault())
-        val time = simpleDateFormat.parse(this)?.time!!
-        val now = Calendar.getInstance().timeInMillis
-
         return try {
-            DateUtils.getRelativeTimeSpanString(
+            val simpleDateFormat = SimpleDateFormat(MODIFIED_DATE, Locale.getDefault())
+            val time = simpleDateFormat.parse(this)?.time!!
+            val now = System.currentTimeMillis()
+            val timeAgo = DateUtils.getRelativeTimeSpanString(
                 time,
                 now,
-                DateUtils.MINUTE_IN_MILLIS
-            )
-                .toString()
+                DateUtils.SECOND_IN_MILLIS
+            ).toString()
+
+            timeAgo
         } catch (e: Exception) {
             e.stackTrace.toString()
             e.toString()
@@ -41,7 +55,7 @@ val String.timeMoment: String
     }
 
 fun String.daysPast(): String {
-    val simpleDateFormat = SimpleDateFormat(DEFAULT_INPUT_DATE_FORMAT, Locale.getDefault())
+    val simpleDateFormat = SimpleDateFormat(MODIFIED_DATE, Locale.getDefault())
     val time = simpleDateFormat.parse(this)?.time!!
     val now = System.currentTimeMillis()
 
@@ -53,20 +67,6 @@ fun String.daysPast(): String {
         .toString()
 }
 
-fun timeAgo(date:String): String {
-    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-
-    val formatted =simpleDateFormat.format(date)
-    val time = simpleDateFormat.parse(formatted).time
-    val now = Calendar.getInstance().timeInMillis
-    val timeAgo = DateUtils.getRelativeTimeSpanString(
-        time,
-        now,
-        DateUtils.SECOND_IN_MILLIS
-    )
-        .toString()
-    return timeAgo
-}
 fun getCurrentDate(dateFormat: String = DEFAULT_INPUT_DATE_FORMAT): String {
     val date = Date().time
 

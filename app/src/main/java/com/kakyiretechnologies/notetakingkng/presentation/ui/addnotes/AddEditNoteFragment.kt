@@ -19,7 +19,6 @@ import com.kakyiretechnologies.notetakingkng.R
 import com.kakyiretechnologies.notetakingkng.databinding.FragmentAddEditNoteBinding
 import com.kakyiretechnologies.notetakingkng.domain.model.Note
 import com.kakyiretechnologies.notetakingkng.domain.utils.RECORD_AUDIO_PERMISSION_REQUEST
-import com.kakyiretechnologies.notetakingkng.domain.utils.getCurrentDate
 import com.kakyiretechnologies.notetakingkng.presentation.ui.notesdetail.DetailsNoteViewModel
 import com.kakyiretechnologies.notetakingkng.presentation.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -209,7 +208,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         note.apply {
             title = noteTitle
             content = noteContent
-            modifiedOn = getCurrentDate()
+            modifiedOn = System.currentTimeMillis()
             voiceNote = fileName
         }
 

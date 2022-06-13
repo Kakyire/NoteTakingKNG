@@ -18,8 +18,8 @@ class SearchNotesUseCase @Inject constructor(private val notesRepository: NotesR
             .collect { notes ->
                 notes.groupBy {
                     it.createdOn
-                }.forEach { (dates, noteList) ->
-                    groupedNotes.add(NoteHeaders(dates, noteList))
+                }.forEach { (_, noteList) ->
+                    groupedNotes.add(NoteHeaders(noteList[0].modifiedOn.toString(), noteList))
                 }
             }
 
