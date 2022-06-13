@@ -3,7 +3,7 @@ package com.kakyiretechnologies.notetakingkng.presentation.ui.notes
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.widget.SearchView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kakyiretechnologies.notetakingkng.R
@@ -72,18 +72,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), OnRecyclerViewClickList
             )
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                searchForNotes(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchForNotes(newText)
-                return true
-            }
-        })
-
+        searchView.addTextChangedListener { searchForNotes(it.toString()) }
     }
 
     override fun onItemClick(note: Note) {
