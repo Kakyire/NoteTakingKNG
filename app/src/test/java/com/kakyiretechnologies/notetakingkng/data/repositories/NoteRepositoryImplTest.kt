@@ -28,8 +28,9 @@ class NoteRepositoryImplTest {
                 id = "$i",
                 title = "title$i",
                 content = "content$i",
-                modifiedOn = "June 7, 2022",
-                createdOn = "June $i, 2022"
+                modifiedOn = i.toLong(),
+                createdOn = "June $i, 2022",
+                headerDate = i.toLong()
             )
             notes.add(note)
         }
@@ -56,18 +57,21 @@ class NoteRepositoryImplTest {
     }
 
     @Test
-    fun `Get note detail using note id`() {
+    fun `Get note detail using note id`()= runBlocking {
 
         val note = Note(
             id = "2",
             title = "title2",
             content = "content2",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 2, 2022"
+            modifiedOn = 2,
+            createdOn = "June 2, 2022",
+            headerDate = 2
         )
-        val results = repository.getNoteDetails("2")
+        repository.getNoteDetails("2").collect{
+            assertThat(it).isEqualTo(note)
+        }
 
-        assertThat(results).isEqualTo(note)
+
     }
 
     @Test
@@ -76,8 +80,9 @@ class NoteRepositoryImplTest {
             id = "32",
             title = "title32",
             content = "content32",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 6, 2022"
+            modifiedOn = 32,
+            createdOn = "June 6, 2022",
+            headerDate = 32
         )
         repository.addNote(note)
         repository.getAllNotes()
@@ -92,15 +97,17 @@ class NoteRepositoryImplTest {
             id = "3",
             title = "new title",
             content = "new content",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 6, 2022"
+            modifiedOn = 3,
+            createdOn = "June 6, 2022",
+            headerDate = 3
         )
         val failExpected = Note(
             id = "3",
             title = "this will fail",
             content = "wrong content",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 6, 2022"
+            modifiedOn =3,
+            createdOn = "June 6, 2022",
+            headerDate = 3
         )
 
         repository.updateNote(note)

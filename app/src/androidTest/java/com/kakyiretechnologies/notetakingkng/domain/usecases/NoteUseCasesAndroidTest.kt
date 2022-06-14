@@ -50,8 +50,9 @@ class NoteUseCasesAndroidTest {
                     id = "$i",
                     title = "title$i",
                     content = "content$i",
-                    modifiedOn = "June 7, 2022",
-                    createdOn = "June $i, 2022"
+                    modifiedOn = i.toLong(),
+                    createdOn = "June $i, 2022",
+                    headerDate = i.toLong()
                 )
                 addNotesUseCase.invoke(note)
             }
@@ -92,8 +93,9 @@ class NoteUseCasesAndroidTest {
             id = "4",
             title = "title4",
             content = "content4",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 4, 2022"
+            modifiedOn = 4,
+            createdOn = "June 4, 2022",
+            headerDate = 4
         )
         deleteNotesUseCase.invoke(note)
 
@@ -109,8 +111,9 @@ class NoteUseCasesAndroidTest {
             id = "4",
             title = title,
             content = "new content",
-            modifiedOn = "June 23, 2022",
-            createdOn = "June 4, 2022"
+            modifiedOn = 4,
+            createdOn = "June 4, 2022",
+            headerDate = 4
         )
         updateNotesUseCase.invoke(note)
 
@@ -121,18 +124,19 @@ class NoteUseCasesAndroidTest {
     }
 
     @Test
-    fun returnNote_withSpecificId()= runBlocking {
+    fun returnNote_withSpecificId() = runBlocking {
         val note = Note(
             id = "2",
             title = "title2",
             content = "content2",
-            modifiedOn = "June 7, 2022",
-            createdOn = "June 2, 2022"
+            modifiedOn = 2,
+            createdOn = "June 2, 2022",
+            headerDate = 2
         )
 
-            getNoteDetailsUseCase.invoke("2").collect{
-                assertThat(it).isEqualTo(note)
-            }
+        getNoteDetailsUseCase.invoke("2").collect {
+            assertThat(it).isEqualTo(note)
+        }
 
 
     }
